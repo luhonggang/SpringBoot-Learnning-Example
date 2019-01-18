@@ -36,6 +36,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--项目的监控和管理使用jar-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Spring Boot Redis 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -109,7 +115,7 @@
             <version>4.2.0</version>
         </dependency>
         <!-- apollo dependency start -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-client</artifactId>
             <version>${apollo-version}</version>
@@ -119,7 +125,7 @@
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-core</artifactId>
             <version>${apollo-version}</version>
-        </dependency>
+        </dependency>-->
         <!-- apollo dependency end -->
 
         <!-- com.google.inject/guice -->
