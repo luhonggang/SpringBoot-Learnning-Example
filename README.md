@@ -1,2 +1,2 @@
 # SpringBoot-Learnning-Example
-SpringBoot相关组件技术学习研究,提交测试.
+SpringBoot相关组件技术学习研究,主要涉及java方面的涉猎的相关技术学习集合,项目实战中我们都是如何来应用的,重点强调项目实战,项目使用案例持续更新中。
