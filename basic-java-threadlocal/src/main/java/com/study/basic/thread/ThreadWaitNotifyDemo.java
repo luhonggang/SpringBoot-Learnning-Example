@@ -132,8 +132,8 @@ class Apple{
 
     @Override
     public String toString() {
-        return "Apple{" +
-                "i=" + i +
+        return "苹果 {" +
+                "i=" + (i + 1)+
                 '}';
     }
 }
