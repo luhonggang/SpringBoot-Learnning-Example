@@ -20,6 +20,8 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class RabbitConfig {
+
+    private static final int MAX_CONCURRENT_CONSUMERS = 3;
     @Primary
     @Bean(name="appConnectionFactory")
     public ConnectionFactory appConnectionFactory(
@@ -78,6 +80,8 @@ public class RabbitConfig {
     public SimpleRabbitListenerContainerFactory appFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer,
                                                            @Qualifier("appConnectionFactory") ConnectionFactory connectionFactory){
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setMaxConcurrentConsumers(MAX_CONCURRENT_CONSUMERS);
+        factory.setConcurrentConsumers(1);
         configurer.configure(factory, connectionFactory);
         return factory;
     }

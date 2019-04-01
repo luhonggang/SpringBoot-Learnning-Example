@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 public class QueueUtil {
     public  static  final String AUTH_USER_QUEUE="AUTH_USER_QUEUE";
 
+    public  static  final String AUTH_TEST_QUEUE="AUTH_TEST_QUEUE";
+
     /**
      * direct 交换机模式
      */

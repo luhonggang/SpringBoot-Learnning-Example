@@ -8,7 +8,10 @@ public enum QueueEnum{
     /**
      * 测试队列
      */
-    AUTH_USER_QUEUE("AUTH_USER_QUEUE", "AUTH_USER_EXCHANGE", "AUTH_USER_QUEUE");
+    AUTH_USER_QUEUE("AUTH_USER_QUEUE", "AUTH_USER_EXCHANGE", "AUTH_USER_QUEUE"),
+
+    AUTH_TEST_QUEUE("AUTH_TEST_QUEUE", "AUTH_TEST_EXCHANGE", "AUTH_TEST_ROUTING");
+
 
     private String queue;
     private String exchange;
