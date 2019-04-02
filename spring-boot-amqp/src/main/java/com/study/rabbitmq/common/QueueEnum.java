@@ -12,7 +12,6 @@ public enum QueueEnum{
 
     AUTH_TEST_QUEUE("AUTH_TEST_QUEUE", "AUTH_TEST_EXCHANGE", "AUTH_TEST_ROUTING");
 
-
     private String queue;
     private String exchange;
     private String routingKey;

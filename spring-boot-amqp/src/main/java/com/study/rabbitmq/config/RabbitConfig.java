@@ -90,7 +90,7 @@ public class RabbitConfig {
 //            @Value("${spring.rabbitmq.elect.username}") String username,
 //            @Value("${spring.rabbitmq.elect.password}") String password,
 //            @Value("${spring.rabbitmq.elect.virtualHost}") String virtualHost,
-//            @Value("${spring.rabbitmq.elect.connection-timeout}") int timeout){
+//            @Value("${sprinmdg.rabbitmq.elect.connection-timeout}") int timeout){
 //        return connectionFactory(host,port,username,password,virtualHost,timeout);
 //    }
 //

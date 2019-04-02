@@ -34,7 +34,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-amqp</artifactId>
-      <version>1.5.9.RELEASE</version>
     </dependency>
 
  <!--   &lt;!&ndash; activemq依赖 &ndash;&gt;

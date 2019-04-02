@@ -25,7 +25,7 @@ public class MyInvocationHandle implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        // 调用方法
+        // 调用方法 总结: 结婚使人成长
         System.out.println("gogogogogogogogogogo");
         Object val = method.invoke(target, args);
         System.out.println("这样多好,相互渗透的生活,有人说婚姻就像一个杯子,提供了一种容器,把男人和女人放在里面,相互渗透,为这苦涩的生活增添香味");

@@ -1,16 +1,18 @@
 package com.study.rabbitmq.task;
 
 import com.study.rabbitmq.common.QueueEnum;
-import com.study.rabbitmq.consumer.AuthTestQueueConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
 /**
+ * RabbitMQ 分发策略:
+ * 1. direct
+ * 2. fanout
+ * 3. topic
  * @author luhonggang
  * @version 1.8.0
  * @date 2019/3/28 22:04
@@ -18,10 +20,6 @@ import javax.annotation.Resource;
 @Component
 @Slf4j
 public class ConsumerTask {
-
-    @Autowired
-    AuthTestQueueConsumer authTestQueueConsumer;
-
     @Resource(name="appRabbitTemplate")
     private RabbitTemplate appRabbitTemplate;
 
