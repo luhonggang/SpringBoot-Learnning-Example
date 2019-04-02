@@ -6,6 +6,9 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author luhonggang
  * @version 1.8.0
@@ -21,10 +24,13 @@ public class AuthTestQueueConsumer {
             return;
         }
         try{
+            Map<String,String> map = new HashMap<String,String>(12);
             String body  = new String(message.getBody(), "utf-8");
             log.info("获取到接收的消息 : " + body);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
+
 }

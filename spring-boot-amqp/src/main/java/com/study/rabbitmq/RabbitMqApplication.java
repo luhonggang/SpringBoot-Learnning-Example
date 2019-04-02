@@ -20,14 +20,7 @@ import javax.annotation.Resource;
  */
 @SpringBootApplication
 @EnableScheduling
-public class RabbitMqApplication extends SpringBootServletInitializer implements CommandLineRunner {
-
-//    @Resource(name = "appRabbitTemplate")
-//    AmqpTemplate amqpTemplate;
-
-
-    @Resource(name="appRabbitTemplate")
-    private RabbitTemplate appRabbitTemplate;
+public class RabbitMqApplication extends SpringBootServletInitializer /*implements CommandLineRunner*/ {
 
     public static void main( String[] args )
     {
@@ -35,17 +28,18 @@ public class RabbitMqApplication extends SpringBootServletInitializer implements
         ConfigurableApplicationContext run = SpringApplication.run(RabbitMqApplication.class, args);
     }
 
-    @Override
-    public void run(String... strings) throws Exception {
-        String msg = " 测试消息发送开始 ";
-        appRabbitTemplate.convertAndSend(QueueEnum.AUTH_TEST_QUEUE.getExchange(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey(),msg);
-
-        logger.info(" 第一次 发送成功 ");
-        // 获取到消息
-
-//        convertAndSend(QueuesEnum.AUTH_ARRAIGNMENT_QUEUE.getExchange(), QueuesEnum.AUTH_ARRAIGNMENT_QUEUE.getRoutingKey(), JSON.toJSONString(cuMaterialTask));
-//        amqpTemplate.convertAndSend(QueueEnum.AUTH_USER_QUEUE.getExchange(),QueueEnum.AUTH_USER_QUEUE.getRoutingKey(),msg);
-    }
+//    @Override
+//    public void run(String... strings) throws Exception {
+//        logger.info("++++++++++ 程序启动开始执行 ++++++++++");
+//        String msg = " 测试消息发送开始 ";
+//        appRabbitTemplate.convertAndSend(QueueEnum.AUTH_TEST_QUEUE.getExchange(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey(),msg);
+//
+//        logger.info(" 第一次 发送成功 ");
+//        // 获取到消息
+//
+////        convertAndSend(QueuesEnum.AUTH_ARRAIGNMENT_QUEUE.getExchange(), QueuesEnum.AUTH_ARRAIGNMENT_QUEUE.getRoutingKey(), JSON.toJSONString(cuMaterialTask));
+////        amqpTemplate.convertAndSend(QueueEnum.AUTH_USER_QUEUE.getExchange(),QueueEnum.AUTH_USER_QUEUE.getRoutingKey(),msg);
+//    }
 
 //    /** 添加定时任务 直接指定时间间隔，例如：1秒 **/
 //    @Scheduled(cron = "0/1 * * * * ?")

@@ -1,7 +1,5 @@
 package com.study.rabbitmq.config;
-
-import com.study.rabbitmq.common.QueueUtil;
-import org.springframework.amqp.core.Queue;
+import com.study.rabbitmq.common.QueueEnum;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -38,40 +36,38 @@ public class RabbitConfig {
         connectionFactory.setPassword(password);
         connectionFactory.setVirtualHost(virtualHost);
         connectionFactory.setConnectionTimeout(timeout);
-        connectionFactory.setPublisherConfirms(true); //必须要设置
+        //必须要设置
+        connectionFactory.setPublisherConfirms(true);
         return connectionFactory;
 //        return connectionFactory(host,port,username,password,virtualHost,timeout);
     }
 
-//    @Bean
-//    public Queue helloQueue(){
-//        return new Queue(QueueUtil.AUTH_USER_QUEUE);
+//    /**
+//     *
+//     * @param host
+//     * @param port
+//     * @param username
+//     * @param password
+//     * @param virtualHost
+//     * @param timeout
+//     * @return
+//     */
+//    public CachingConnectionFactory  connectionFactory(String host,int port,String username,String password,String virtualHost,int timeout){
+//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+//        connectionFactory.setHost(host);
+//        connectionFactory.setPort(port);
+//        connectionFactory.setUsername(username);
+//        connectionFactory.setPassword(password);
+//        connectionFactory.setVirtualHost(virtualHost);
+//        connectionFactory.setConnectionTimeout(timeout);
+//        return connectionFactory;
 //    }
 
-    /**
-     *
-     * @param host
-     * @param port
-     * @param username
-     * @param password
-     * @param virtualHost
-     * @param timeout
-     * @return
-     */
-    public CachingConnectionFactory  connectionFactory(String host,int port,String username,String password,String virtualHost,int timeout){
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost(host);
-        connectionFactory.setPort(port);
-        connectionFactory.setUsername(username);
-        connectionFactory.setPassword(password);
-        connectionFactory.setVirtualHost(virtualHost);
-        connectionFactory.setConnectionTimeout(timeout);
-        return connectionFactory;
-    }
     @Primary
     @Bean(name="appRabbitTemplate")
     public RabbitTemplate appRabbitTemplate(@Qualifier("appConnectionFactory") ConnectionFactory connectionFactory){
         RabbitTemplate firstRabbitTemplate = new RabbitTemplate(connectionFactory);
+        //firstRabbitTemplate.convertAndSend(QueueEnum.AUTH_TEST_QUEUE.getExchange(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey());
         return firstRabbitTemplate;
     }
 
