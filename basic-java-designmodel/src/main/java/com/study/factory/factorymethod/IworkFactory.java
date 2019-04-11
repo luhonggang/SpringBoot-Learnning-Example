@@ -1,4 +1,4 @@
-package com.study.factory;
+package com.study.factory.factorymethod;
 
 /**
  * 该类主要负责定义其子类的实例化对象的方式

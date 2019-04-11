@@ -1,4 +1,4 @@
-package com.study.factory;
+package com.study.factory.factorymethod;
 
 /**
  * 工厂方法 测试类

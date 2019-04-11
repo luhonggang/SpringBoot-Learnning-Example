@@ -25,7 +25,7 @@ public class ConsumerTask {
 
     ThreadLocal<Integer> currentVal = new ThreadLocal<>();
 
-    /** 添加定时任务 直接指定时间间隔，例如：1秒 **/
+    /** 添加定时任务 直接指定时间间隔，例如：1秒 EXCHANGE TYPE**/
     @Scheduled(cron = "0/1 * * * * ?")
     public void  consumerTask(){
         if(null == currentVal.get()){

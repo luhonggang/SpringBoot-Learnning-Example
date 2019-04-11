@@ -48,6 +48,13 @@ public class MyInvocationHandle implements InvocationHandler {
 
         realUservice.select();
 
+        String LOGIN_SMS="login_sms:%s:%s";
+        String appName = "6";
+        String phoneNum = "18589072284";
+        String smsCodeRedisKey = String.format(LOGIN_SMS, appName, phoneNum);
+        System.out.println(" 格式的值 : " + smsCodeRedisKey);
+
+
 
 
 

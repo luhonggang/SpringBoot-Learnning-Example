@@ -1,4 +1,4 @@
-package com.study.factory;
+package com.study.factory.factorymethod;
 
 /**
  * @author luhonggang
