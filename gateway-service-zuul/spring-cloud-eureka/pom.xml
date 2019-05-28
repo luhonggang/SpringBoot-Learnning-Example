@@ -11,7 +11,25 @@
 	<artifactId>spring-cloud-eureka</artifactId>
 	<packaging>jar</packaging>
 
+	<!--<repositories>
+		<repository>
+			&lt;!&ndash;<mirror>
+				<id>nexus-aliyun</id>
+				<mirrorOf>*</mirrorOf>
+				<name>Nexus aliyun</name>
+				<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			</mirror>&ndash;&gt;
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>-->
 	<dependencies>
+
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
@@ -20,6 +38,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
 
