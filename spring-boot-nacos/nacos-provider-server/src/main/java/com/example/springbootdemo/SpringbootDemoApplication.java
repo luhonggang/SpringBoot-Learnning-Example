@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author luhonggang
  * 启动类
+ * nacos 中文社区示例 : http://springcloud.cn/view/438
  * nacos 参考网址 : http://blog.didispace.com/spring-cloud-alibaba-1/
  * nacos 下载网址 : https://github.com/alibaba/nacos/releases
  * nacos 访问地址 : http://127.0.0.1:8848/nacos/
