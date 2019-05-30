@@ -1,8 +1,13 @@
 server:
   port: 8888
+
 spring:
   application:
-    name: spring-boot-admin-sample-eureka
+    name: admin-server
+  # 代码国际化翻译支持
+  messages:
+    basename: i18n/messages #相对路径 开头请勿添加斜杠
+    encoding: UTF-8
 
 # tag::configuration-eureka[]
 eureka:   #<1>
@@ -15,19 +20,6 @@ eureka:   #<1>
     registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8000}/eureka/
-
-
-  profiles: secure
+management:
   security:
-    user:
-      name: "root"
-      password: "123"
-  boot:
-    admin:
-      client:
-        username: "root"       #These two are needed so that the client
-        password: "123"   #can register at the protected server api
-        instance:
-          metadata:
-            user.name: "root"         #These two are needed so that the server
-            user.password: "123" #can access the protected client endpoints
+    enabled: false
