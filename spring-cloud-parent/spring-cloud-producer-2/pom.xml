@@ -26,6 +26,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- fegin 调用-->
+		<dependency>
+			<groupId>com.neo</groupId>
+			<artifactId>spring-cloud-producer</artifactId>
+			<version>1.0.0.BUILD-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
