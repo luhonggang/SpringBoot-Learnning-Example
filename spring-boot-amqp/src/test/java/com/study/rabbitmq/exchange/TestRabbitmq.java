@@ -30,10 +30,10 @@ public class TestRabbitmq {
 
         @Resource(name = "appRabbitTemplate")
         AmqpTemplate appRabbitTemplate;
-
-        @Test
-        public void test002(){
-            String msg = " 测试消息发送开始 ";
-            appRabbitTemplate.convertAndSend(QueueEnum.AUTH_TEST_QUEUE.getExchange(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey(),msg);
-        }
+//
+//        @Test
+//        public void test002(){
+//            String msg = " 测试消息发送开始 ";
+//            appRabbitTemplate.convertAndSend(QueueEnum.AUTH_TEST_QUEUE.getExchange(),QueueEnum.AUTH_TEST_QUEUE.getRoutingKey(),msg);
+//        }
 }
