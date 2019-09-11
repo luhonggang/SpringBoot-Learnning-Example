@@ -1,5 +1,6 @@
 package com.study.annotation.controller;
 
+import com.study.annotation.common.ReadPropertiesConfig;
 import com.study.annotation.entity.User;
 import com.study.annotation.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,14 @@ public class HelloController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ReadPropertiesConfig readPropertiesConfig;
+
     @RequestMapping(value = "list",method = {RequestMethod.POST,RequestMethod.GET})
-    public List<User> queryList(){
-        return userService.queryList();
+    public String queryList(){
+        log.info("注入的值 : " + readPropertiesConfig.url);
+//        return userService.queryList();
+        return readPropertiesConfig.url;
     }
 
     @RequestMapping(value = "list02",method = {RequestMethod.POST,RequestMethod.GET})

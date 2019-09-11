@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Import;
 
 /**
  * 多数据源配置
+ * @author luhonggang
  * @Import 实现将 DynamicDataSourceRegister 类的实例注入到SpringIOC中
  */
 @SpringBootApplication
-@Import({DynamicDataSourceRegister.class})
+//@Import({DynamicDataSourceRegister.class})
 public class AnnotationApplication extends SpringBootServletInitializer
 {
     public static void main( String[] args )

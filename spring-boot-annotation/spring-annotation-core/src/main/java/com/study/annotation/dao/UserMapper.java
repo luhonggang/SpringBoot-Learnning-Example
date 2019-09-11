@@ -10,6 +10,7 @@ import java.util.List;
  * @version 1.8.0
  * @date 2019/1/17 13:49
  */
+@SuppressWarnings("ALL")
 @Mapper
 public interface UserMapper {
     List<User> queryList();

@@ -10,8 +10,11 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * @author luhonggang
+ * 定义顺序，保证当前线程在销毁前，spring工厂可以创建需要的数据源
+ */
 @Aspect
-/** 定义顺序，保证当前线程在销毁前，spring工厂可以创建需要的数据源*/
 @Order(-10)
 @Component
 public class DynamicDataSourceAspect {

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @author luhonggang
+ */
 public class DynamicDataSourceContextHolder {
     private static Logger logger = LoggerFactory.getLogger(DynamicDataSourceContextHolder.class);
     /**

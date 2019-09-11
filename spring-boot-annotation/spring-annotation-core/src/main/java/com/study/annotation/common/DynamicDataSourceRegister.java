@@ -21,15 +21,22 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 如下是基于springboot 1.5.x 版本实现的配置
+ * * springboot 2.0.x 另换配置方式
+ */
 @SuppressWarnings("all")
-public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,EnvironmentAware {
+public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {
     private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceRegister.class);
-    /**如配置文件中未指定数据源类型，使用该默认值*/
+    /**
+     * 如配置文件中未指定数据源类型，使用该默认值
+     */
     private static final Object DATASOURCE_TYPE_DEFAULT = "org.apache.tomcat.jdbc.pool.DataSource";
     private ConversionService conversionService = new DefaultConversionService();
     private PropertyValues dataSourcePropertyValues;
-    /** 默认数据源 */
+    /**
+     * 默认数据源
+     */
     private DataSource defaultDataSource;
     private Map<String, DataSource> customDataSources = new HashMap<String, DataSource>();
 
@@ -58,7 +65,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         targetDataSources.putAll(customDataSources);
         for (String key : customDataSources.keySet()) {
             DynamicDataSourceContextHolder.dataSourceIds.add(key);
-            logger.info("===========  配置的数据库连接名称 ： "+key);
+            logger.info("===========  配置的数据库连接名称 ： " + key);
         }
         logger.info("===========  dataSourceIds : {} ===============", JSON.toJSONString(DynamicDataSourceContextHolder.dataSourceIds));
         // 创建DynamicDataSource
@@ -77,9 +84,10 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 
     /**
      * 加载主数据源配置.
+     *
      * @param env
      */
-    private void initDefaultDataSource(Environment env){
+    private void initDefaultDataSource(Environment env) {
         // 读取主数据源
         RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
         Map<String, Object> dsMap = new HashMap<String, Object>();
@@ -122,7 +130,8 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 
     /**
      * 初始化多数据源 配置读取
-     * @param env  环境配置
+     *
+     * @param env 环境配置
      */
     private void initCustomDataSources(Environment env) {
         // 读取配置文件获取更多数据源，也可以通过defaultDataSource读取数据库获取更多数据源
@@ -137,18 +146,19 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
             customDataSources.put(dsPrefix, ds);
             DynamicDataSourceContextHolder.setDataSourceType(dsPrefix);
             dataBinder(ds, env);
-            logger.info("++++++++++++ 数据源名称 ++++++++++++",dsPrefix);
+            logger.info("++++++++++++ 数据源名称 ++++++++++++", dsPrefix);
         }
     }
 
     /**
      * 绑定数据源实现
+     *
      * @param dsMap 数据源类型
-     * @return      DataSource
+     * @return DataSource
      */
     public DataSource buildDataSource(Map<String, Object> dsMap) {
         Object type = dsMap.get("type");
-        if (type == null){
+        if (type == null) {
             // 默认DataSource
             type = DATASOURCE_TYPE_DEFAULT;
         }
@@ -166,19 +176,21 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         }
         return null;
     }
+
     /**
      * 为DataSource绑定更多数据
+     *
      * @param dataSource
      * @param env
      */
-    private void dataBinder(DataSource dataSource, Environment env){
+    private void dataBinder(DataSource dataSource, Environment env) {
 
         RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
         dataBinder.setConversionService(conversionService);
         dataBinder.setIgnoreNestedProperties(false);
         dataBinder.setIgnoreInvalidFields(false);
         dataBinder.setIgnoreUnknownFields(true);
-        if(dataSourcePropertyValues == null){
+        if (dataSourcePropertyValues == null) {
             Map<String, Object> rpr = new RelaxedPropertyResolver(env, "spring.datasource").getSubProperties(".");
             logger.info("=== spring.datasource :{}========", JSON.toJSONString(rpr));
             logger.info("初始化 Druid 连接池");
