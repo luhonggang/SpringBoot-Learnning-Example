@@ -1,14 +1,16 @@
 package com.study.annotation.controller;
 
 import com.study.annotation.common.ReadPropertiesConfig;
+import com.study.annotation.entity.ExperimentVo;
 import com.study.annotation.entity.User;
+import com.study.annotation.service.ExperimentService;
 import com.study.annotation.service.UserService;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -28,9 +30,13 @@ public class HelloController {
     @Autowired
     ReadPropertiesConfig readPropertiesConfig;
 
-    @RequestMapping(value = "list",method = {RequestMethod.POST,RequestMethod.GET})
+    @Reference
+    ExperimentService experimentService;
+
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String queryList(){
         log.info("注入的值 : " + readPropertiesConfig.url);
+        // 注入的值 : jdbc:mysql://localhost:3306/rule?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true
 //        return userService.queryList();
         return readPropertiesConfig.url;
     }
@@ -39,5 +45,24 @@ public class HelloController {
     public List<User> queryList02(){
         return userService.queryList02();
     }
+
+    /**
+     * 保存实验数据
+     * @param experimentVo 入参数据
+     */
+    @PostMapping(value = "/save-experiment")
+    private void saveExperiment(@Valid @RequestBody ExperimentVo experimentVo){
+        experimentService.saveExperiment(experimentVo);
+    }
+
+    /**
+     * 修改实验数据
+     * @param experimentVo 入参数据
+     */
+    @PostMapping(value = "/update-experiment")
+    private void updateExperiment(@Valid @RequestBody ExperimentVo experimentVo){
+         experimentService.updateExperiment(experimentVo);
+    }
+
 
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.annotation.dao.ExperimentMapper">
+  <resultMap id="BaseResultMap" type="com.study.annotation.entity.Experiment">
+    <id column="experiment_id" jdbcType="BIGINT" property="experimentId" />
+    <result column="experiment_code" jdbcType="VARCHAR" property="experimentCode" />
+    <result column="experiment_name" jdbcType="VARCHAR" property="experimentName" />
+    <result column="flow_data" jdbcType="VARCHAR" property="flowData" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="create_man" jdbcType="VARCHAR" property="createMan" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_man" jdbcType="VARCHAR" property="updateMan" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    experiment_id, experiment_code, experiment_name, flow_data, status, version, create_man, 
+    create_time, update_man, update_time
+  </sql>
+
+  <select id="selectByCode"  resultMap="BaseResultMap">
+    SELECT
+     COUNT(1) AS record
+    FROM experiment
+    WHERE experiment_code = #{code} status = '1'
+  </select>
+
+  <select id="selectByPrimaryKeyVersion"  resultType="int">
+    SELECT
+     COUNT(1) AS record
+    FROM experiment
+    WHERE experiment_id = #{experimentId,jdbcType=BIGINT}
+    AND version = #{version} AND status = '1'
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from experiment
+    where experiment_id = #{experimentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.study.annotation.entity.Experiment">
+    insert into experiment (experiment_id, experiment_code, experiment_name, 
+      flow_data, status, version, 
+      create_man, create_time, update_man, 
+      update_time)
+    values (#{experimentId,jdbcType=BIGINT}, #{experimentCode,jdbcType=VARCHAR}, #{experimentName,jdbcType=VARCHAR}, 
+      #{flowData,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{version,jdbcType=INTEGER}, 
+      #{createMan,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateMan,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.annotation.entity.ExperimentVo">
+    insert into experiment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="experimentId != null">
+        experiment_id,
+      </if>
+      <if test="experimentCode != null">
+        experiment_code,
+      </if>
+      <if test="experimentName != null">
+        experiment_name,
+      </if>
+      <if test="flowData != null">
+        flow_data,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createMan != null">
+        create_man,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateMan != null">
+        update_man,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="experimentId != null">
+        #{experimentId,jdbcType=BIGINT},
+      </if>
+      <if test="experimentCode != null">
+        #{experimentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentName != null">
+        #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowData != null">
+        #{flowData,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createMan != null">
+        #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        NOW(),
+      </if>
+      <if test="updateMan != null">
+        #{updateMan,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        NOW(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.annotation.entity.ExperimentVo">
+    update experiment
+    <set>
+      <if test="experimentCode != null">
+        experiment_code = #{experimentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentName != null">
+        experiment_name = #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowData != null">
+        flow_data = #{flowData,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="version != null">
+        version = version + 1,
+      </if>
+      <if test="createMan != null">
+        create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateMan != null">
+        update_man = #{updateMan,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = NOW(),
+      </if>
+    </set>
+    where experiment_id = #{experimentId,jdbcType=BIGINT} AND version = #{version}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.study.annotation.entity.Experiment">
+    update experiment
+    set experiment_code = #{experimentCode,jdbcType=VARCHAR},
+      experiment_name = #{experimentName,jdbcType=VARCHAR},
+      flow_data = #{flowData,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      version = #{version,jdbcType=INTEGER},
+      create_man = #{createMan,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_man = #{updateMan,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where experiment_id = #{experimentId,jdbcType=BIGINT}
+  </update>
+</mapper>

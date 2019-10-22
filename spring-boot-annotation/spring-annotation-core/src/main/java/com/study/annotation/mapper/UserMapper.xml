@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.annotation.dao.UserMapper">
 	<resultMap id="UserMap" type="com.study.annotation.entity.User">
-		<id property="UserId" column="User_id" javaType="java.lang.String"></id>
+		<id property="useId" column="User_id" javaType="java.lang.String"></id>
 		<result property="useId" column="use_id" javaType="java.lang.String"></result>
 		<result property="phoneNum" column="phone_num" javaType="java.lang.String"></result>
 		<result property="password" column="password" javaType="java.lang.String"></result>

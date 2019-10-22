@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 多数据源配置
@@ -13,7 +14,8 @@ import org.springframework.context.annotation.Import;
  * @Import 实现将 DynamicDataSourceRegister 类的实例注入到SpringIOC中
  */
 @SpringBootApplication
-//@Import({DynamicDataSourceRegister.class})
+@EnableTransactionManagement
+@Import({DynamicDataSourceRegister.class})
 public class AnnotationApplication extends SpringBootServletInitializer
 {
     public static void main( String[] args )
