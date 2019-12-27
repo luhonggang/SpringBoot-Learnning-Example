@@ -1,4 +1,4 @@
-package com.study.rabbitmq;
+package com.study.rabbitmq.historyuse;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
